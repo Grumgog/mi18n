@@ -1,12 +1,11 @@
-use std::path::PathBuf;
+use crate::general::dirs::get_directory;
+use crate::json_test;
 
+use std::path::PathBuf;
 use clap::{Arg, ArgMatches, Command};
 use std::ffi::OsStr;
-
 use std::fs::read_dir;
 
-use crate::cmd::general::get_directory;
-use crate::json_test;
 
 pub fn make_subcommand() -> Command {
     let command = Command::new("test").about("Testing your i18n files").arg(
@@ -20,7 +19,7 @@ pub fn make_subcommand() -> Command {
     command
 }
 
-pub fn execute(args: &ArgMatches) -> i32 {
+pub fn execute(args: &ArgMatches) {
     let path = get_directory(args);
 
     let dir_content = read_dir(&path).expect("cannot read dir!");
@@ -46,6 +45,4 @@ pub fn execute(args: &ArgMatches) -> i32 {
     } else {
         println!("No json files find!");
     }
-
-    5
 }

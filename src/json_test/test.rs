@@ -37,10 +37,16 @@ fn select_keys(
     parent_key: Option<String>,
 ) {
     for (key, value) in json {
-        if let Some(ref parent_key_value) = parent_key {
-            keys.push(format!("{}.{}", parent_key_value, key));
+        let key = if let Some(ref parent_key_value) = parent_key {
+            format!("{}.{}", parent_key_value, key)
         } else {
-            keys.push(key.to_string());
+            key.to_string()
+        };
+        
+        if keys.contains(&key) {
+            println!("duplicated key: {}", key);
+        } else {
+            keys.push(key.clone());
         }
 
         match value {
