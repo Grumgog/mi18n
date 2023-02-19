@@ -37,7 +37,6 @@ pub fn execute(args: &ArgMatches) -> i32 {
         };
 
         if extension == "json" {
-            println!("finnaly json! as {:#?}", file_info.path());
             files.push(file_info.path());
         }
     }
