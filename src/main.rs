@@ -1,7 +1,6 @@
 use clap::{crate_authors, crate_name, crate_version, Command};
-
 mod cmd;
-
+mod json_test;
 fn main() {
     let command = create_clap_command();
 
